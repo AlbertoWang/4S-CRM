@@ -14,4 +14,10 @@ public interface AdminService {
 	// 获取员工信息 (若未输入员工姓名则返回全部员工信息)
 	MyJson getEmployees(int pageNum, int pageSize, String employeeName);
 
+	// 获取全部用户种类，用于前端选择
+	MyJson getAllUserTypes();
+
+	// 获取全部员工权限，用于前端选择
+	MyJson getAllEmployeePermissions();
+
 }

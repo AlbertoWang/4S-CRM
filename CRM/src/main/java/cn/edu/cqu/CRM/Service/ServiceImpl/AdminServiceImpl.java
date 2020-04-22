@@ -87,4 +87,28 @@ public class AdminServiceImpl implements AdminService {
 		}
 	}
 
+	@Override
+	public MyJson getAllUserTypes() {
+		UserTypeExample userTypeExample = new UserTypeExample();
+		userTypeExample.or();
+		try {
+			return new MyJson(userTypeMapper.selectByExample(userTypeExample));
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
+	@Override
+	public MyJson getAllEmployeePermissions() {
+		EmployeePermissionExample employeePermissionExample = new EmployeePermissionExample();
+		employeePermissionExample.or();
+		try {
+			return new MyJson(employeePermissionMapper.selectByExample(employeePermissionExample));
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
 }

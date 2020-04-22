@@ -31,4 +31,16 @@ public class AdminController {
 		return adminService.getEmployees(pageNum, pageSize, employeeName);
 	}
 
+	@GetMapping(value = "getAllUserTypes")
+	@ResponseBody
+	public MyJson getAllUserTypes() {
+		return adminService.getAllUserTypes();
+	}
+
+	@GetMapping(value = "getAllEmployeePermissions")
+	@ResponseBody
+	public MyJson getAllEmployeePermissions() {
+		return adminService.getAllEmployeePermissions();
+	}
+
 }
