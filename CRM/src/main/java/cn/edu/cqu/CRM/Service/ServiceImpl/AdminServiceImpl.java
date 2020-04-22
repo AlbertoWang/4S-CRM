@@ -69,6 +69,7 @@ public class AdminServiceImpl implements AdminService {
 	public MyJson signup(EmployeeInfo employeeInfo, String employeeAccount) {
 		Employee employee = employeeViewToTable(employeeInfo);
 		employee.setEmployeeAccount(employeeAccount);
+		employee.setEmployeePassword("123456");
 		try {
 			employeeMapper.insert(employee);
 			return new MyJson("注册成功");
