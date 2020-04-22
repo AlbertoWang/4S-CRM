@@ -1,5 +1,7 @@
 package cn.edu.cqu.CRM.Service.ServiceImpl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,9 @@ import cn.edu.cqu.CRM.Dao.BuyInfoMapper;
 import cn.edu.cqu.CRM.Dao.CustomerMapper;
 import cn.edu.cqu.CRM.Dao.MaintainInfoMapper;
 import cn.edu.cqu.CRM.Dao.RepairInfoMapper;
+import cn.edu.cqu.CRM.Pojo.BuyInfo;
+import cn.edu.cqu.CRM.Pojo.BuyInfoExample;
+import cn.edu.cqu.CRM.Pojo.BuyInfoExample.Criteria;
 import cn.edu.cqu.CRM.Pojo.Customer;
 import cn.edu.cqu.CRM.Pojo.CustomerExample;
 import cn.edu.cqu.CRM.Service.UserService;
@@ -41,6 +46,36 @@ public class UserServiceImpl implements UserService {
 		try {
 			PageHelper.startPage(pageNum, pageSize);
 			PageInfo<Customer> pageInfo = new PageInfo<Customer>(customerMapper.selectByExample(customerExample));
+			return new MyJson(pageInfo);
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public MyJson getBuyInfos(int pageNum, int pageSize, Long customerTel, String employeeName, Date recordDay) {
+		BuyInfoExample buyInfoExample = new BuyInfoExample();
+		Criteria criteria = buyInfoExample.createCriteria();
+		if (customerTel != null) {
+			// 已输入客户手机号
+			criteria.andCustomerTelEqualTo(customerTel);
+		}
+		if (employeeName != null) {
+			// 已输入员工姓名
+			criteria.andEmployeeNameLike("%" + employeeName + "%");
+		}
+		if (recordDay != null) {
+			// 已输入日期
+			criteria.andRecordTimeBetween(
+					new Date(recordDay.getYear(), recordDay.getMonth(), recordDay.getDate(), 0, 0, 0),
+					new Date(recordDay.getYear(), recordDay.getMonth(), recordDay.getDate(), 23, 59, 59));
+		}
+		buyInfoExample.or(criteria);
+		try {
+			PageHelper.startPage(pageNum, pageSize);
+			PageInfo<BuyInfo> pageInfo = new PageInfo<BuyInfo>(buyInfoMapper.selectByExample(buyInfoExample));
 			return new MyJson(pageInfo);
 		} catch (Exception e) {
 			System.err.println(e);
