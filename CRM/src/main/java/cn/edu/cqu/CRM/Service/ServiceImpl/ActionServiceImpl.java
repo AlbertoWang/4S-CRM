@@ -23,7 +23,7 @@ public class ActionServiceImpl implements ActionService {
 
 	private final String MANAGER = "manager";
 	private final String SALER = "saler";
-	private final String SERVICER = "servier";
+	private final String SERVIER = "servier";
 
 	@Autowired
 	EmployeeMapper employeeMapper;
@@ -44,7 +44,7 @@ public class ActionServiceImpl implements ActionService {
 				case 1:
 					return new MyJson(MANAGER);
 				case 2:
-					return new MyJson(SERVICER);
+					return new MyJson(SERVIER);
 				case 3:
 					return new MyJson(SALER);
 				default:
