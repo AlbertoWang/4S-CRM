@@ -51,15 +51,15 @@
                             <!-- Form -->
                             <form method="post" id="login-form">
 
-                                <input type="text" class="input-text with-border" name="emailaddress" id="emailaddress" placeholder="用户名" required/>                          
+                                <input type="text" class="input-text with-border" id="username" placeholder="用户名" required/>                          
 
-                                <input type="password" class="input-text with-border" name="password" id="password" placeholder="密码" required/>
+                                <input type="password" class="input-text with-border"id="password" placeholder="密码" required/>
  
 
                             </form>
                             <h4>&ensp;</h4>
                             <!-- Button -->
-                            <button class="button dark full-width button-sliding-icon margin-top-10" type="submit" form="login-form">登录 <i class="fa fa-angle-right"></i></button>
+                            <button id="login-btn" class="button dark full-width button-sliding-icon margin-top-10" type="button" form="login-form">登录 <i class="fa fa-angle-right"></i></button>
 
                         </div>
 
@@ -72,6 +72,51 @@
     </div>
 </div>
 <!-- Javascript -->
+   <script>
+        $('#login-btn').on('click',function(){
+            var username = $('#username').val();
+            var password = $('#password').val();
+            if(!username){
+                $('#username').focus();
+                document.querySelector('#username').placeholder = '请填写用户名';
+                return
+            }
+            if(!password){
+                $('#password').focus();
+                document.querySelector('#password').placeholder = '请填写密码';
+                return
+            }
+            var Employee = {};
+            Employee["employeeAccount"]   =     username;
+            Employee["employeePassword"]  =  password;
+            
+            $.ajax({
+                type: "post",
+                url:"/login" ,
+                async:false,
+                dataType: "json",
+                data:Employee,
+                success:function(data) {
+				if(data.status==true){
+					if(data.data=='manager'){
+						window.location.href="manager.html";
+					}
+					if(data.data=='saler'){
+						window.location.href="saler.html";
+					}
+					if(data.data=='servicer'){
+						window.location.href="servicer.html";
+					}
+					
+				}
+				if (data.status==false) {
+					alert(data.message);
+				}
+                },
+                error:function(){alert(data.message)}
+            });
+})
+    </script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/bootstrap-select.min.js"></script>
