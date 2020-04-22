@@ -11,8 +11,8 @@
 		</commentGenerator>
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-			connectionURL="jdbc:mysql://cdb-mzvws756.cd.tencentcdb.com:10143/crm"
-			userId="root" password="qwe123!@#">
+			connectionURL="jdbc:mysql://cdb-mzvws756.cd.tencentcdb.com:10143/CRM"
+			userId="generator" password="zxc123!@#">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg" 
 			userId="yycg" password="yycg"> </jdbcConnection> -->
@@ -36,12 +36,15 @@
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置，重要！！ -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="cn.edu.cqu.Recommend.Dao"
+			targetPackage="cn.edu.cqu.CRM.Dao"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 
-		<table tableName="user"></table>
+		<table tableName="buy_info"></table>
+		<table tableName="employee_info"></table>
+		<table tableName="maintain_info"></table>
+		<table tableName="repair_info"></table>
 
 	</context>
 </generatorConfiguration>
