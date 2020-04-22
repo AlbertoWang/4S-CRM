@@ -11,4 +11,7 @@ public interface AdminService {
 	// 注册新账号
 	MyJson signup(EmployeeInfo employeeInfo, String employeeAccount);
 
+	// 获取员工信息 (若未输入员工姓名则返回全部员工信息)
+	MyJson getEmployees(int pageNum, int pageSize, String employeeName);
+
 }
