@@ -5,7 +5,11 @@ public class EmployeeInfo {
 
     private String employeeName;
 
+    private Integer userTypeId;
+
     private String userTypeName;
+
+    private Integer permissionId;
 
     private String permissionName;
 
@@ -27,12 +31,28 @@ public class EmployeeInfo {
         this.employeeName = employeeName == null ? null : employeeName.trim();
     }
 
+    public Integer getUserTypeId() {
+        return userTypeId;
+    }
+
+    public void setUserTypeId(Integer userTypeId) {
+        this.userTypeId = userTypeId;
+    }
+
     public String getUserTypeName() {
         return userTypeName;
     }
 
     public void setUserTypeName(String userTypeName) {
         this.userTypeName = userTypeName == null ? null : userTypeName.trim();
+    }
+
+    public Integer getPermissionId() {
+        return permissionId;
+    }
+
+    public void setPermissionId(Integer permissionId) {
+        this.permissionId = permissionId;
     }
 
     public String getPermissionName() {

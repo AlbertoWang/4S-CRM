@@ -234,6 +234,66 @@ public class EmployeeInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andUserTypeIdIsNull() {
+            addCriterion("user_type_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdIsNotNull() {
+            addCriterion("user_type_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdEqualTo(Integer value) {
+            addCriterion("user_type_id =", value, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdNotEqualTo(Integer value) {
+            addCriterion("user_type_id <>", value, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdGreaterThan(Integer value) {
+            addCriterion("user_type_id >", value, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_type_id >=", value, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdLessThan(Integer value) {
+            addCriterion("user_type_id <", value, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_type_id <=", value, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdIn(List<Integer> values) {
+            addCriterion("user_type_id in", values, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdNotIn(List<Integer> values) {
+            addCriterion("user_type_id not in", values, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_type_id between", value1, value2, "userTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_type_id not between", value1, value2, "userTypeId");
+            return (Criteria) this;
+        }
+
         public Criteria andUserTypeNameIsNull() {
             addCriterion("user_type_name is null");
             return (Criteria) this;
@@ -301,6 +361,66 @@ public class EmployeeInfoExample {
 
         public Criteria andUserTypeNameNotBetween(String value1, String value2) {
             addCriterion("user_type_name not between", value1, value2, "userTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdIsNull() {
+            addCriterion("permission_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdIsNotNull() {
+            addCriterion("permission_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdEqualTo(Integer value) {
+            addCriterion("permission_id =", value, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdNotEqualTo(Integer value) {
+            addCriterion("permission_id <>", value, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdGreaterThan(Integer value) {
+            addCriterion("permission_id >", value, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("permission_id >=", value, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdLessThan(Integer value) {
+            addCriterion("permission_id <", value, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("permission_id <=", value, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdIn(List<Integer> values) {
+            addCriterion("permission_id in", values, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdNotIn(List<Integer> values) {
+            addCriterion("permission_id not in", values, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdBetween(Integer value1, Integer value2) {
+            addCriterion("permission_id between", value1, value2, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("permission_id not between", value1, value2, "permissionId");
             return (Criteria) this;
         }
 
