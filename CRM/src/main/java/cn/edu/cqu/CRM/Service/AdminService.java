@@ -20,4 +20,7 @@ public interface AdminService {
 	// 获取全部员工权限，用于前端选择
 	MyJson getAllEmployeePermissions();
 
+	// 更新员工信息
+	MyJson updateEmployeeInfo(EmployeeInfo employeeInfo);
+
 }

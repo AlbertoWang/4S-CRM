@@ -36,13 +36,10 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	EmployeePermissionMapper employeePermissionMapper;
 
-	@Override
-	public MyJson signup(EmployeeInfo employeeInfo, String employeeAccount) {
+	private Employee employeeViewToTable(EmployeeInfo employeeInfo) {
 		Employee employee = new Employee();
-		employee.setEmployeeAccount(employeeAccount);
 		employee.setEmployeeName(employeeInfo.getEmployeeName());
 		employee.setEmployeeTel(employeeInfo.getEmployeeTel());
-		employee.setEmployeePassword("00000");
 		UserTypeExample userTypeExample = new UserTypeExample();
 		userTypeExample.or().andUserTypeNameEqualTo(employeeInfo.getUserTypeName());
 		EmployeePermissionExample employeePermissionExample = new EmployeePermissionExample();
@@ -50,15 +47,29 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			List<UserType> userTypes = userTypeMapper.selectByExample(userTypeExample);
 			if (userTypes.size() == 0) {
-				return new MyJson(false, "不存在的用户类型");
+				System.err.println("数据库 UserType 表出错");
+				return null;
 			}
 			List<EmployeePermission> employeePermissions = employeePermissionMapper
 					.selectByExample(employeePermissionExample);
 			if (employeePermissions.size() == 0) {
-				return new MyJson(false, "不存在的用户权限");
+				System.err.println("数据库 EmployeePermission 表出错");
+				return null;
 			}
 			employee.setUserTypeId(userTypes.get(0).getUserTypeId());
 			employee.setPermissionId(employeePermissions.get(0).getPermissionId());
+			return employee;
+		} catch (Exception e) {
+			System.err.println(e);
+			return null;
+		}
+	}
+
+	@Override
+	public MyJson signup(EmployeeInfo employeeInfo, String employeeAccount) {
+		Employee employee = employeeViewToTable(employeeInfo);
+		employee.setEmployeeAccount(employeeAccount);
+		try {
 			employeeMapper.insert(employee);
 			return new MyJson("注册成功");
 		} catch (Exception e) {
@@ -105,6 +116,18 @@ public class AdminServiceImpl implements AdminService {
 		employeePermissionExample.or();
 		try {
 			return new MyJson(employeePermissionMapper.selectByExample(employeePermissionExample));
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
+	@Override
+	public MyJson updateEmployeeInfo(EmployeeInfo employeeInfo) {
+		Employee employee = employeeViewToTable(employeeInfo);
+		try {
+			employeeMapper.updateByPrimaryKeySelective(employee);
+			return new MyJson("更新成功");
 		} catch (Exception e) {
 			System.err.println(e);
 			return new MyJson(false, DATABASE_ERR);
