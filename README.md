@@ -5,6 +5,7 @@
 ### 用户行为相关
 * 登录 (根据不同用户类型跳转到不同主页)
 * 登出
+* 修改密码
 
 ### 管理员用户相关
 * 注册新员工账号 (初始默认密码为*123456*)
@@ -30,7 +31,6 @@
 
 ### 雇员用户相关
 * 修改个人信息
-* 修改密码
 
 ---
 ### Powered by [AlbertoWang](https://github.com/AlbertoWang) and [HaberZhang](https://github.com/haber8023)
