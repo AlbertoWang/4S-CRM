@@ -470,9 +470,9 @@ function repair(){
 			var address = $('#address').val();
 			var model = $('#model').val();
 			var detail = $('#detail').val();
-			var gender = '1';
+			var gender = '男';
 			if($('#radio-2').prop("checked")){
-				gender = '0';
+				gender = '女';
 			}
 			var RepairInfo = {};
 			RepairInfo["customerName"] = name;
@@ -483,7 +483,7 @@ function repair(){
 			RepairInfo["employeeTel"] = employeeTel;
 			RepairInfo["employeeId"] = employeeId;
 			RepairInfo["carType"] = model;
-			RepairInfo["repairItem"] = detail;
+			RepairInfo["recordItem"] = detail;
 		    $.ajax({
 		        type: "post",
 		        url:"/addRepairInfo" ,

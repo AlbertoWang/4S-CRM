@@ -105,23 +105,23 @@
                                     <div class="row">
                                         <div class="form-group col-sm-6">
                                             <label class="control-label">客户姓名</label>
-                                            <input size="4" type="text">
+                                            <input size="4" type="text" id="customName">
                                         </div>
 
                                         <div class="form-group col-sm-6">
                                             <label class="control-label">联系方式</label>
-                                            <input autocomplete="off" type="text">
+                                            <input autocomplete="off" type="text" id="tel">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="form-group col-sm-6">
                                             <label class="control-label">客户地址</label>
-                                            <input autocomplete="off" size="20" type="text">
+                                            <input autocomplete="off" size="20" type="text" id="address">
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>保养车型</label>
-                                            <select name="arac" class="selectpicker">
+                                            <select name="arac" class="selectpicker" id="model">
                                                 <option value="1">Model 1</option>
                                                 <option value="2">Model 2</option>
                                                 <option selected="selected" value="3">Model 3</option>
@@ -133,7 +133,7 @@
 
                                     <div class="row">
                                         <div class="form-group col-sm-12">
-                                            <textarea name="mesajınız" rows="6" class="margin-top-10" placeholder="备注"></textarea>
+                                            <textarea name="mesajınız" id="detail" rows="6" class="margin-top-10" placeholder="备注"></textarea>
                                         </div>
                                     </div>
 
@@ -155,7 +155,7 @@
                                     
                                     <div class="row margin-top-30">
                                         <div class="col-sm-12">
-                                            <button class="button">提交</button>
+                                            <button class="button" type="button" onClick="repair()">提交</button>
                                         </div>
                                     </div>
 
@@ -175,7 +175,6 @@
                 <div class="mid-space"></div>
             </div>
         </section>
-
 
         <!-- counter-area -->
         <section class="counters white-section section-block">
@@ -430,7 +429,6 @@ function ok(id){
 		        alert('两次输入的密码不一致');
 		        return
 		    }
-			alert(username+password+newPassword);
 		    $.ajax({
 		        type: "post",
 		        url:"/changePsw" ,
@@ -455,6 +453,59 @@ function ok(id){
 			alert(data.message);
 		}
 	});
+}
+function repair(){
+	$.get('/getEmployee', function(data) {
+		if (data.status==true) {
+			if(data.data==null){
+				alert('登录超时，请重新登录');
+				window.location.href="index.html";
+			}
+			var employeeId = data.data.employeeId;
+			var employeeAccount = data.data.employeeAccount;
+			var employeeName = data.data.employeeName;
+			var employeeTel = data.data.employeeTel;
+			var name = $('#customName').val();
+			var tel = $('#tel').val();
+			var address = $('#address').val();
+			var model = $('#model').val();
+			var detail = $('#detail').val();
+			var gender = '男';
+			if($('#radio-2').prop("checked")){
+				gender = '女';
+			}
+			var RepairInfo = {};
+			RepairInfo["customerName"] = name;
+			RepairInfo["customerGender"] = gender;
+			RepairInfo["customerTel"] = tel;
+			RepairInfo["customerAddress"] = address;
+			RepairInfo["employeeName"] = employeeName;
+			RepairInfo["employeeTel"] = employeeTel;
+			RepairInfo["employeeId"] = employeeId;
+			RepairInfo["carType"] = model;
+			RepairInfo["recordItem"] = detail;
+		    $.ajax({
+		        type: "post",
+		        url:"/addMaintainInfo" ,
+		        async:false,
+		        dataType: "json",
+		        data:RepairInfo,
+		        success:function(data) {
+				if(data.status==true){
+					alert('保养记录添加成功 ！');
+				}
+				if (data.status==false) {
+					alert(data.message);
+				}
+		        },
+		        error:function(){alert('err back!')}
+		    });
+		}
+		if (data.status==false) {
+			alert(data.message);
+		}
+	});
+
 }
 </script>
 </body>

@@ -14,8 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Theme Style -->
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css">
-
+	<link rel="stylesheet" href="syalert/syalert.min.css" />
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/icon/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="assets/icon/apple-touch-icon-158-precomposed.png">
@@ -25,6 +26,21 @@
       <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script src="syalert/syalert.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/animsition.js"></script>
+<script src="assets/js/jquery.appear.min.js"></script>
+<script src="assets/js/countto.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/jquery.stickit.min.js"></script>
+<script src="assets/js/jquery.parallax-1.1.3.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/masonry.pkgd.min.js"></script>
+<script src="assets/js/magnific.popup.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/main.js"></script>
 </head>
 <body>
 <div class="animsition">
@@ -44,14 +60,14 @@
                 </div>
             </div>
             <div class="container">
-                <a class="main-logo" href="index.html"><img src="assets/img/logo.svg" alt="autoshow"></a>
+                <a class="main-logo" href="saler.html"><img src="assets/img/logo.svg" alt="autoshow"></a>
                 <ul class="header-buttons">
                     <li class="dropdown">
-                      <a class="user-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user-circle" aria-hidden="true"></i></a>王博韬
+                      <a class="user-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user-circle" aria-hidden="true"></i></a><span id="name"></span>
                       <ul class="dropdown-menu">
-                        <li><a href="#">编辑个人信息</a></li>
-                        <li><a href="#">销售记录</a></li>
-                        <li><a href="#">退出登录</a></li>
+                        <li><a href="javascript:void(0);" onClick="syalert.syopen('alert4')" id="editUserInfo">修改密码</a></li>
+                        <li><a href="sale_record.html">销售记录</a></li>
+                        <li><a href="javascript:void(0);" onclick="logout()">退出登录</a></li>
                       </ul>
                     </li>
                     <li><a class="nav-trigger">Menu<span></span></a></li>
@@ -65,7 +81,7 @@
                                 <li class="go-back"><a href="#0">Menu</a></li>
                                 <li class="see-all"><a href="#">All Models</a></li>
                                 <li>
-                                    <a class="nav-item" href="model.html">
+                                    <a class="nav-item" href="sale.html?model=1">
                                         <img src="assets/img/models/model1-menu.png" alt="Model1">
                                         <h3>Model1</h3>
                                         <p class="price">￥80,000<br /><s</p>
@@ -77,7 +93,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-item" href="model.html">
+                                    <a class="nav-item" href="sale.html?model=2">
                                         <img src="assets/img/models/model2-menu.png" alt="Model2">
                                         <h3>Model2</h3>
                                         <p class="price">￥160,000<br /></p>
@@ -89,7 +105,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-item" href="model.html">
+                                    <a class="nav-item" href="sale.html?model=3">
                                         <img src="assets/img/models/model3-menu.png" alt="Model3">
                                         <h3>Model3</h3>
                                         <p class="price">￥200,000<br /></p>
@@ -101,7 +117,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-item" href="model.html">
+                                    <a class="nav-item" href="sale.html?model=4">
                                         <img src="assets/img/models/model4-menu.png" alt="Model4">
                                         <h3>Model4</h3>
                                         <p class="price">￥300,000<br /></p>
@@ -113,7 +129,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-item" href="model.html">
+                                    <a class="nav-item" href="sale.html?model=5">
                                         <img src="assets/img/models/model5-menu.png" alt="Model5">
                                         <h3>Model5</h3>
                                         <p class="price">￥500,000<br /></p>
@@ -127,7 +143,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="pages-about.html">关于我们</a></li>
+                        <li><a href="saler_about.html">关于我们</a></li>
                     </ul>
                 </nav>
             </div>
@@ -151,10 +167,10 @@
 
               <div class="item-carousel clearfix">
                 <div class="car">
-                  <a href="#"><img src="assets/img/models/model1-menu.png" alt=""></a>
+                  <a href="sale.html?model=1"><img src="assets/img/models/model1-menu.png" alt=""></a>
                   <div class="car-description">
 
-                    <h5 class="car-name"><a href="#">Model 1</a></h5>
+                    <h5 class="car-name"><a href="sale.html?model=1">Model 1</a></h5>
 
                     <div class="car-area">
 
@@ -178,11 +194,11 @@
                 
                 <div class="car">
                   
-                  <a href="#"><img src="assets/img/models/model2-menu.png" alt=""></a>
+                  <a href="sale.html?model=2"><img src="assets/img/models/model2-menu.png" alt=""></a>
                   
                   <div class="car-description">
 
-                    <h5 class="car-name"><a href="#">Model 2</a></h5>
+                    <h5 class="car-name"><a href="sale.html?model=2">Model 2</a></h5>
 
                     <div class="car-area">
 
@@ -208,11 +224,11 @@
                 
                 <div class="car">
                   
-                  <a href="#"><img src="assets/img/models/model3-menu.png" alt=""></a>          
+                  <a href="sale.html?model=3"><img src="assets/img/models/model3-menu.png" alt=""></a>          
 
                   <div class="car-description">
 
-                    <h5 class="car-name"><a href="#">Model 3</a></h5>
+                    <h5 class="car-name"><a href="sale.html?model=3">Model 3</a></h5>
 
                     <div class="car-area">
 
@@ -238,11 +254,11 @@
                 
                 <div class="car">
                   
-                  <a href="#"><img src="assets/img/models/model4-menu.png" alt=""></a>
+                  <a href="sale.html?model=4"><img src="assets/img/models/model4-menu.png" alt=""></a>
                   
                   <div class="car-description">
 
-                    <h5 class="car-name"><a href="#">Model 4</a></h5>
+                    <h5 class="car-name"><a href="sale.html?model=4">Model 4</a></h5>
 
                     <div class="car-area">
 
@@ -268,11 +284,11 @@
                 
                 <div class="car">
                   
-                  <a href="#"><img src="assets/img/models/model5-menu.png" alt=""></a>
+                  <a href="sale.html?model=5"><img src="assets/img/models/model5-menu.png" alt=""></a>
                   
                   <div class="car-description">
 
-                    <h5 class="car-name"><a href="#">Model 5</a></h5>
+                    <h5 class="car-name"><a href="sale.html?model=5">Model 5</a></h5>
 
                     <div class="car-area">
 
@@ -479,20 +495,108 @@
         </footer>
     </div>
 </div>
-<!-- Javascript -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/bootstrap-select.min.js"></script>
-<script src="assets/js/animsition.js"></script>
-<script src="assets/js/jquery.appear.min.js"></script>
-<script src="assets/js/countto.js"></script>
-<script src="assets/js/slick.min.js"></script>
-<script src="assets/js/jquery.stickit.min.js"></script>
-<script src="assets/js/jquery.parallax-1.1.3.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/masonry.pkgd.min.js"></script>
-<script src="assets/js/magnific.popup.min.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/main.js"></script>
+<!-- 自定义弹窗 -->
+<div class="sy-alert sy-alert-model animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="confirm" sy-mask="true" id="alert4">
+  <div class="sy-title">修改密码</div>
+  <div class="sy-content">
+    <div class="form">
+    <p class="input-item"><input type="password" id="password" placeholder="请输入原密码" /></p>
+    <p class="input-item"><input type="password" id="newPassword" placeholder="请输入新密码" /></p>
+    <p class="input-item"><input type="password" id="rePassword" placeholder="请再次输入新密码" /></p>
+
+    </div>
+  </div> 
+  <div class="sy-btn">
+    <button onClick="syalert.syhide('alert4')">取消</button>
+    <button onClick="ok('alert4')">确定</button>
+  </div> 
+</div>
+<script>
+$.get('/getEmployee', function(data) {
+	if (data.status==true) {
+		if(data.data==null){
+			alert('登录超时，请重新登录');
+			window.location.href="index.html";
+		}
+		var id = data.data.employeeId;
+		var account = data.data.employeeAccount;
+		var name = data.data.employeeName;
+		$('#name').html('<center>'+name+'</center>');
+	}
+	if (data.status==false) {
+		alert(data.message);
+	}
+});
+function logout() {
+	var url = '/logout';
+	$.get(url, function(data) {
+		if (data.status==true) {
+			window.location.href="index.html";
+		}
+		if (data.status==false) {
+			alert(data.message);
+		}
+	});
+};
+function ok(id){
+	$.get('/getEmployee', function(data) {
+		if (data.status==true) {
+			if(data.data==null){
+				alert('登录超时，请重新登录');
+				window.location.href="index.html";
+			}
+			var username = data.data.employeeAccount;
+		    var password = $('#password').val();
+		    var newPassword = $('#newPassword').val();
+		    var rePassword = $('#rePassword').val();
+		    if(!password){
+		        $('#password').focus();
+		        document.querySelector('#password').placeholder = '请填写密码';
+		        return
+		    }
+		    if(!newPassword){
+		        $('#newPassword').focus();
+		        document.querySelector('#newPassword').placeholder = '请填写新密码';
+		        return
+		    }
+		    if(password==newPassword){
+		        alert('新密码不能与原密码相同');
+		        return
+		    }
+		    if(!rePassword){
+		        $('#rePassword').focus();
+		        document.querySelector('#rePassword').placeholder = '请重复填写新密码';
+		        return
+		    }
+		    if(newPassword!=rePassword){
+		        alert('两次输入的密码不一致');
+		        return
+		    }
+		    $.ajax({
+		        type: "post",
+		        url:"/changePsw" ,
+		        async:false,
+		        dataType: "json",
+		        data:{"employeeAccount":username,"employeePassword":password,"employeeNewPassowrd":newPassword},
+		        success:function(data) {
+				if(data.status==true){
+					syalert.syhide(id);	
+					alert('密码修改成功，请重新登录！');
+					window.location.href="index.html"
+				}
+				if (data.status==false) {
+					alert(data.message);
+				}
+		        },
+		        error:function(){alert('err back!')}
+		    });
+
+		}
+		if (data.status==false) {
+			alert(data.message);
+		}
+	});
+}
+</script>
 </body>
 </html>
