@@ -77,9 +77,14 @@ public class PageController {
 		return "manager_about";
 	}
 
-//	@RequestMapping("/.html")
-//	public String goto() {
-//		return "";
-//	}
+	@RequestMapping("/sale_record.html")
+	public String gotoSale_record() {
+		return "sale_record";
+	}
+
+	@RequestMapping("/service_record.html")
+	public String gotoService_record() {
+		return "service_record";
+	}
 
 }
