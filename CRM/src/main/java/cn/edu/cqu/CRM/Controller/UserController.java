@@ -21,6 +21,9 @@ public class UserController {
 	@Autowired
 	UserService userSerivce;
 
+	/*
+	 * 公共响应
+	 */
 	// 按客户手机号获取客户信息
 	@GetMapping(value = "getCustomers")
 	@ResponseBody
@@ -70,7 +73,6 @@ public class UserController {
 	/*
 	 * 维修相关响应
 	 */
-
 	// 按客户手机号/员工名/日期获取保养记录
 	@GetMapping(value = "getRepairInfos")
 	@ResponseBody
