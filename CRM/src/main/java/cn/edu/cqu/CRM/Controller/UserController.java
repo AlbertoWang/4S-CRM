@@ -4,10 +4,12 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.edu.cqu.CRM.Pojo.BuyInfo;
 import cn.edu.cqu.CRM.Service.UserService;
 import cn.edu.cqu.CRM.Utils.DataFormat.MyJson;
 
@@ -32,6 +34,13 @@ public class UserController {
 			@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize, Long customerTel,
 			String employeeName, Date recordDay) {
 		return userSerivce.getBuyInfos(pageNum, pageSize, customerTel, employeeName, recordDay);
+	}
+
+	// 新增客户购买记录
+	@PostMapping(value = "addBuyInfo")
+	@ResponseBody
+	public MyJson addBuyInfo(BuyInfo buyInfo) {
+		return userSerivce.addBuyInfo(buyInfo);
 	}
 
 }
