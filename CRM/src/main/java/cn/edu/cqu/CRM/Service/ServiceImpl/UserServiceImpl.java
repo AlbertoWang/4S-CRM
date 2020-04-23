@@ -138,6 +138,7 @@ public class UserServiceImpl implements UserService {
 				customer.setCustomerGender(buyInfo.getCustomerGender());
 				customer.setCustomerTel(buyInfo.getCustomerTel());
 				// 并插入外键
+				customerMapper.insert(customer);
 				customers = customerMapper.selectByExample(customerExample);
 				buyRecord.setCustomerId(customers.get(0).getCustomerId());
 			} else {
@@ -217,6 +218,7 @@ public class UserServiceImpl implements UserService {
 				customer.setCustomerGender(maintainInfo.getCustomerGender());
 				customer.setCustomerTel(maintainInfo.getCustomerTel());
 				// 并插入外键
+				customerMapper.insert(customer);
 				customers = customerMapper.selectByExample(customerExample);
 				maintainRecord.setCustomerId(customers.get(0).getCustomerId());
 			} else {
@@ -295,6 +297,7 @@ public class UserServiceImpl implements UserService {
 				customer.setCustomerGender(repairInfo.getCustomerGender());
 				customer.setCustomerTel(repairInfo.getCustomerTel());
 				// 并插入外键
+				customerMapper.insert(customer);
 				customers = customerMapper.selectByExample(customerExample);
 				repairRecord.setCustomerId(customers.get(0).getCustomerId());
 			} else {
