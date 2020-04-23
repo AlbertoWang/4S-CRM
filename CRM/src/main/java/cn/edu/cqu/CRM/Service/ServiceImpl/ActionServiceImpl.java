@@ -65,4 +65,31 @@ public class ActionServiceImpl implements ActionService {
 		return new MyJson(SUCCESS);
 	}
 
+	@Override
+	public MyJson changePsw(String employeeAccount, String employeePassword, String employeeNewPassowrd) {
+		EmployeeExample employeeExample = new EmployeeExample();
+		employeeExample.or().andEmployeeAccountEqualTo(employeeAccount);
+		try {
+			List<Employee> employees = employeeMapper.selectByExample(employeeExample);
+			if (employees.size() == 0) {
+				// 账号不存在
+				return new MyJson(false, NO_ACCOUNT);
+			}
+			if (!employeePassword.equals(employees.get(0).getEmployeePassword())) {
+				// 旧密码错误
+				return new MyJson(false, WRONG_PASSWORD);
+			}
+			Employee employee = new Employee();
+			employee.setEmployeeId(employees.get(0).getEmployeeId());
+			employee.setEmployeeAccount(employees.get(0).getEmployeeAccount());
+			employee.setEmployeePassword(employeeNewPassowrd);
+			// 修改密码
+			employeeMapper.updateByPrimaryKeySelective(employee);
+			return new MyJson(SUCCESS);
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
 }

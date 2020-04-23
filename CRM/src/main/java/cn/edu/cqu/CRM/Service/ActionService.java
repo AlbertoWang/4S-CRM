@@ -16,4 +16,6 @@ public interface ActionService {
 	// 用户退出
 	MyJson logout(HttpSession session);
 
+	// 修改密码
+	MyJson changePsw(String employeeAccount, String employeePassword, String employeeNewPassowrd);
 }

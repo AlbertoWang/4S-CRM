@@ -18,15 +18,24 @@ public class ActionController {
 	@Autowired
 	ActionService actionService;
 
+	// 登录
 	@PostMapping(value = "login")
 	@ResponseBody
 	public MyJson login(Employee employee, HttpSession session) {
 		return actionService.login(employee, session);
 	}
 
+	// 登出
 	@GetMapping(value = "logout")
 	@ResponseBody
 	public MyJson logout(HttpSession session) {
 		return actionService.logout(session);
+	}
+
+	// 修改密码
+	@PostMapping(value = "changePsw")
+	@ResponseBody
+	public MyJson changePsw(String employeeAccount, String employeePassword, String employeeNewPassowrd) {
+		return actionService.changePsw(employeeAccount, employeePassword, employeeNewPassowrd);
 	}
 }
