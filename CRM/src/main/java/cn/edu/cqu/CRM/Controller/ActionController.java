@@ -38,4 +38,11 @@ public class ActionController {
 	public MyJson changePsw(String employeeAccount, String employeePassword, String employeeNewPassowrd) {
 		return actionService.changePsw(employeeAccount, employeePassword, employeeNewPassowrd);
 	}
+
+	// 获取当前登录的员工对象
+	@GetMapping(value = "getEmployee")
+	@ResponseBody
+	public MyJson getEmployee(HttpSession session) {
+		return new MyJson((Employee) session.getAttribute("employee"));
+	}
 }
