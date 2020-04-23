@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.edu.cqu.CRM.Pojo.BuyInfo;
 import cn.edu.cqu.CRM.Pojo.MaintainInfo;
+import cn.edu.cqu.CRM.Pojo.RepairInfo;
 import cn.edu.cqu.CRM.Service.UserService;
 import cn.edu.cqu.CRM.Utils.DataFormat.MyJson;
 
@@ -64,6 +65,26 @@ public class UserController {
 	@ResponseBody
 	public MyJson addMaintainInfo(MaintainInfo maintainInfo) {
 		return userSerivce.addMaintainInfo(maintainInfo);
+	}
+
+	/*
+	 * 维修相关响应
+	 */
+
+	// 按客户手机号/员工名/日期获取保养记录
+	@GetMapping(value = "getRepairInfos")
+	@ResponseBody
+	public MyJson getRepairInfos(@RequestParam(required = true, value = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize, Long customerTel,
+			String employeeName, Date recordDay) {
+		return userSerivce.getRepairInfos(pageNum, pageSize, customerTel, employeeName, recordDay);
+	}
+
+	// 新增客户保养记录
+	@PostMapping(value = "addRepairInfo")
+	@ResponseBody
+	public MyJson addRepairInfo(RepairInfo repairInfo) {
+		return userSerivce.addRepairInfo(repairInfo);
 	}
 
 }

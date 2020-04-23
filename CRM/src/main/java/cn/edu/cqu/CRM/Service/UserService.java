@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import cn.edu.cqu.CRM.Pojo.BuyInfo;
 import cn.edu.cqu.CRM.Pojo.MaintainInfo;
+import cn.edu.cqu.CRM.Pojo.RepairInfo;
 import cn.edu.cqu.CRM.Utils.DataFormat.MyJson;
 
 @Service
@@ -25,5 +26,11 @@ public interface UserService {
 
 	// 新增客户保养记录
 	MyJson addMaintainInfo(MaintainInfo maintainInfo);
+
+	// 按客户手机号/员工名/日期获取维修记录
+	MyJson getRepairInfos(int pageNum, int pageSize, Long customerTel, String employeeName, Date recordDay);
+
+	// 新增客户维修记录
+	MyJson addRepairInfo(RepairInfo repairInfo);
 
 }

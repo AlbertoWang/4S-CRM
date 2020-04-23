@@ -28,6 +28,9 @@ import cn.edu.cqu.CRM.Pojo.EmployeeExample;
 import cn.edu.cqu.CRM.Pojo.MaintainInfo;
 import cn.edu.cqu.CRM.Pojo.MaintainInfoExample;
 import cn.edu.cqu.CRM.Pojo.MaintainRecord;
+import cn.edu.cqu.CRM.Pojo.RepairInfo;
+import cn.edu.cqu.CRM.Pojo.RepairInfoExample;
+import cn.edu.cqu.CRM.Pojo.RepairRecord;
 import cn.edu.cqu.CRM.Service.UserService;
 import cn.edu.cqu.CRM.Utils.DataFormat.MyJson;
 
@@ -221,6 +224,84 @@ public class UserServiceImpl implements UserService {
 				maintainRecord.setCustomerId(customers.get(0).getCustomerId());
 			}
 			maintainRecordMapper.insert(maintainRecord);
+			return new MyJson("操作成功");
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public MyJson getRepairInfos(int pageNum, int pageSize, Long customerTel, String employeeName, Date recordDay) {
+		RepairInfoExample repairInfoExample = new RepairInfoExample();
+		cn.edu.cqu.CRM.Pojo.RepairInfoExample.Criteria criteria = repairInfoExample.createCriteria();
+		if (customerTel != null) {
+			// 已输入客户手机号
+			criteria.andCustomerTelEqualTo(customerTel);
+		}
+		if (employeeName != null) {
+			// 已输入员工姓名
+			criteria.andEmployeeNameLike("%" + employeeName + "%");
+		}
+		if (recordDay != null) {
+			// 已输入日期
+			criteria.andRecordTimeBetween(
+					new Date(recordDay.getYear(), recordDay.getMonth(), recordDay.getDate(), 0, 0, 0),
+					new Date(recordDay.getYear(), recordDay.getMonth(), recordDay.getDate(), 23, 59, 59));
+		}
+		repairInfoExample.or(criteria);
+		try {
+			PageHelper.startPage(pageNum, pageSize);
+			PageInfo<RepairInfo> pageInfo = new PageInfo<RepairInfo>(
+					repairInfoMapper.selectByExample(repairInfoExample));
+			return new MyJson(pageInfo);
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
+	@Override
+	public MyJson addRepairInfo(RepairInfo repairInfo) {
+		// 员工是否存在
+		EmployeeExample employeeExample = new EmployeeExample();
+		employeeExample.or().andEmployeeNameEqualTo(repairInfo.getEmployeeName())
+				.andEmployeeTelEqualTo(repairInfo.getEmployeeTel());
+		// 客户是否存在
+		CustomerExample customerExample = new CustomerExample();
+		customerExample.or().andCustomerNameEqualTo(repairInfo.getCustomerName())
+				.andCustomerTelEqualTo(repairInfo.getCustomerTel());
+		RepairRecord repairRecord = new RepairRecord();
+		repairRecord.setCarType(repairInfo.getCarType());
+		repairRecord.setRecordItem(repairInfo.getRecordItem());
+		repairRecord.setRecordTime(new Date());
+		try {
+			List<Employee> employees = employeeMapper.selectByExample(employeeExample);
+			if (employees.size() == 0) {
+				// 员工不存在, 报错
+				return new MyJson(false, "不存在的员工");
+			} else {
+				// 员工存在, 插入外键
+				repairRecord.setEmployeeId(employees.get(0).getEmployeeId());
+				repairRecord.setEmployeeAccount(employees.get(0).getEmployeeAccount());
+			}
+			List<Customer> customers = customerMapper.selectByExample(customerExample);
+			if (customers.size() == 0) {
+				// 客户不存在, 插入新客户数据
+				Customer customer = new Customer();
+				customer.setCustomerName(repairInfo.getCustomerName());
+				customer.setCustomerAddress(repairInfo.getCustomerAddress());
+				customer.setCustomerGender(repairInfo.getCustomerGender());
+				customer.setCustomerTel(repairInfo.getCustomerTel());
+				// 并插入外键
+				customers = customerMapper.selectByExample(customerExample);
+				repairRecord.setCustomerId(customers.get(0).getCustomerId());
+			} else {
+				// 客户存在, 插入外键
+				repairRecord.setCustomerId(customers.get(0).getCustomerId());
+			}
+			repairRecordMapper.insert(repairRecord);
 			return new MyJson("操作成功");
 		} catch (Exception e) {
 			System.err.println(e);
