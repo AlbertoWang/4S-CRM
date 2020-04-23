@@ -39,7 +39,7 @@ public class ActionServiceImpl implements ActionService {
 				return new MyJson(false, NO_ACCOUNT);
 			}
 			if (employee.getEmployeePassword().equals(employees.get(0).getEmployeePassword())) {
-				session.setAttribute("employee", employee);
+				session.setAttribute("employee", employees.get(0));
 				switch (employees.get(0).getUserTypeId().intValue()) {
 				case 1:
 					return new MyJson(MANAGER);
