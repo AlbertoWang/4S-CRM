@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.edu.cqu.CRM.Pojo.BuyInfo;
+import cn.edu.cqu.CRM.Pojo.MaintainInfo;
 import cn.edu.cqu.CRM.Service.UserService;
 import cn.edu.cqu.CRM.Utils.DataFormat.MyJson;
 
@@ -27,6 +28,9 @@ public class UserController {
 		return userSerivce.getCustomers(pageNum, pageSize, customerTel);
 	}
 
+	/*
+	 * 买车相关响应
+	 */
 	// 按客户手机号/员工名/日期获取购买记录
 	@GetMapping(value = "getBuyInfos")
 	@ResponseBody
@@ -41,6 +45,25 @@ public class UserController {
 	@ResponseBody
 	public MyJson addBuyInfo(BuyInfo buyInfo) {
 		return userSerivce.addBuyInfo(buyInfo);
+	}
+
+	/*
+	 * 保养相关响应
+	 */
+	// 按客户手机号/员工名/日期获取保养记录
+	@GetMapping(value = "getMaintainInfos")
+	@ResponseBody
+	public MyJson getMaintainInfos(@RequestParam(required = true, value = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize, Long customerTel,
+			String employeeName, Date recordDay) {
+		return userSerivce.getMaintainInfos(pageNum, pageSize, customerTel, employeeName, recordDay);
+	}
+
+	// 新增客户保养记录
+	@PostMapping(value = "addMaintainInfo")
+	@ResponseBody
+	public MyJson addMaintainInfo(MaintainInfo maintainInfo) {
+		return userSerivce.addMaintainInfo(maintainInfo);
 	}
 
 }

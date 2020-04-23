@@ -25,6 +25,9 @@ import cn.edu.cqu.CRM.Pojo.Customer;
 import cn.edu.cqu.CRM.Pojo.CustomerExample;
 import cn.edu.cqu.CRM.Pojo.Employee;
 import cn.edu.cqu.CRM.Pojo.EmployeeExample;
+import cn.edu.cqu.CRM.Pojo.MaintainInfo;
+import cn.edu.cqu.CRM.Pojo.MaintainInfoExample;
+import cn.edu.cqu.CRM.Pojo.MaintainRecord;
 import cn.edu.cqu.CRM.Service.UserService;
 import cn.edu.cqu.CRM.Utils.DataFormat.MyJson;
 
@@ -138,6 +141,86 @@ public class UserServiceImpl implements UserService {
 				// 客户存在, 插入外键
 				buyRecord.setCustomerId(customers.get(0).getCustomerId());
 			}
+			// 插入数据
+			buyRecordMapper.insert(buyRecord);
+			return new MyJson("操作成功");
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public MyJson getMaintainInfos(int pageNum, int pageSize, Long customerTel, String employeeName, Date recordDay) {
+		MaintainInfoExample maintainInfoExample = new MaintainInfoExample();
+		cn.edu.cqu.CRM.Pojo.MaintainInfoExample.Criteria criteria = maintainInfoExample.createCriteria();
+		if (customerTel != null) {
+			// 已输入客户手机号
+			criteria.andCustomerTelEqualTo(customerTel);
+		}
+		if (employeeName != null) {
+			// 已输入员工姓名
+			criteria.andEmployeeNameLike("%" + employeeName + "%");
+		}
+		if (recordDay != null) {
+			// 已输入日期
+			criteria.andRecordTimeBetween(
+					new Date(recordDay.getYear(), recordDay.getMonth(), recordDay.getDate(), 0, 0, 0),
+					new Date(recordDay.getYear(), recordDay.getMonth(), recordDay.getDate(), 23, 59, 59));
+		}
+		maintainInfoExample.or(criteria);
+		try {
+			PageHelper.startPage(pageNum, pageSize);
+			PageInfo<MaintainInfo> pageInfo = new PageInfo<MaintainInfo>(
+					maintainInfoMapper.selectByExample(maintainInfoExample));
+			return new MyJson(pageInfo);
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(false, DATABASE_ERR);
+		}
+	}
+
+	@Override
+	public MyJson addMaintainInfo(MaintainInfo maintainInfo) {
+		// 员工是否存在
+		EmployeeExample employeeExample = new EmployeeExample();
+		employeeExample.or().andEmployeeNameEqualTo(maintainInfo.getEmployeeName())
+				.andEmployeeTelEqualTo(maintainInfo.getEmployeeTel());
+		// 客户是否存在
+		CustomerExample customerExample = new CustomerExample();
+		customerExample.or().andCustomerNameEqualTo(maintainInfo.getCustomerName())
+				.andCustomerTelEqualTo(maintainInfo.getCustomerTel());
+		MaintainRecord maintainRecord = new MaintainRecord();
+		maintainRecord.setCarType(maintainInfo.getCarType());
+		maintainRecord.setRecordItem(maintainInfo.getRecordItem());
+		maintainRecord.setRecordTime(new Date());
+		try {
+			List<Employee> employees = employeeMapper.selectByExample(employeeExample);
+			if (employees.size() == 0) {
+				// 员工不存在, 报错
+				return new MyJson(false, "不存在的员工");
+			} else {
+				// 员工存在, 插入外键
+				maintainRecord.setEmployeeId(employees.get(0).getEmployeeId());
+				maintainRecord.setEmployeeAccount(employees.get(0).getEmployeeAccount());
+			}
+			List<Customer> customers = customerMapper.selectByExample(customerExample);
+			if (customers.size() == 0) {
+				// 客户不存在, 插入新客户数据
+				Customer customer = new Customer();
+				customer.setCustomerName(maintainInfo.getCustomerName());
+				customer.setCustomerAddress(maintainInfo.getCustomerAddress());
+				customer.setCustomerGender(maintainInfo.getCustomerGender());
+				customer.setCustomerTel(maintainInfo.getCustomerTel());
+				// 并插入外键
+				customers = customerMapper.selectByExample(customerExample);
+				maintainRecord.setCustomerId(customers.get(0).getCustomerId());
+			} else {
+				// 客户存在, 插入外键
+				maintainRecord.setCustomerId(customers.get(0).getCustomerId());
+			}
+			maintainRecordMapper.insert(maintainRecord);
 			return new MyJson("操作成功");
 		} catch (Exception e) {
 			System.err.println(e);
