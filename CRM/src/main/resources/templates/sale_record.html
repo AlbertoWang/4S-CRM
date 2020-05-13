@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"><!--<![endif]-->
 <head>
@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="assets/css/animate.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="syalert/syalert.min.css" />
+	<link rel="stylesheet" href=" fenye/css/vendor/normalize.css" />
+    <link rel="stylesheet" href=" fenye/css/styles.min.css" />
+    <link href=" fenye/img/common/favicon.png" rel="shortcut icon" />
+    <link href="fenye/css/jplist.min.css" rel="stylesheet" type="text/css" />
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/icon/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="assets/icon/apple-touch-icon-158-precomposed.png">
@@ -41,6 +45,8 @@
 <script src="assets/js/magnific.popup.min.js"></script>
 <script src="assets/js/wow.min.js"></script>
 <script src="assets/js/main.js"></script>
+<script src=" fenye/js/vendor/modernizr.min.js"></script>
+<script src="fenye/js/jplist.min.js"></script>
 </head>
 <body>
 <div class="animsition">
@@ -150,88 +156,168 @@
         </header>
         <div class="overlay"></div>
 
-		        <!-- banner-area -->
-        <section class="dark-section section-block">
+		
+        <!-- banner-area -->
+        <section class="banner-section">
+            <div class="section-bg" style="background-image: url('assets/img/parallax.jpg');"></div>
             <div class="container">
-                <div class="section-space"></div>
                 <div class="row">
+                    <div class="page-banner-content col">
+                        <h1 class="text-white">销售记录</h1>
 
-                    <div class="col-sm-6 offset-sm-1">
-                        <div class="features-entry wow fadeInCdb">
-                            <div class="image-holder">
-                                <h2 class="section-title">销售订单</h2>
-
-                                <form accept-charset="UTF-8" action="/" class="require-validation" method="post">
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label class="control-label">客户姓名</label>
-                                            <input size="4" type="text" id="customName">
-                                        </div>
-
-                                        <div class="form-group col-sm-6">
-                                            <label class="control-label">联系方式</label>
-                                            <input autocomplete="off" type="text" id="tel">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label class="control-label">客户地址</label>
-                                            <input autocomplete="off" size="20" type="text" id="address">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>所购车型</label>
-                                            <select name="arac" class="selectpicker" id="model">
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <textarea name="mesajınız" id="detail" rows="6" class="margin-top-10" placeholder="备注"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <label>*客户称谓</label>
-                                            <br>
-                                            <div class="radio">
-                                                <input id="radio-1" name="radio" type="radio" checked="">
-                                                <label for="radio-1"><span class="radio-label"></span> 先生 </label>
-                                            </div>
-     
-                                            <div class="radio margin-left-20">
-                                                <input id="radio-2" name="radio" type="radio">
-                                                <label for="radio-2"><span class="radio-label"></span> 小姐 </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row margin-top-30">
-                                        <div class="col-sm-12">
-                                            <button class="button" type="button" onClick="repair()">提交</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 offset-sm-1">
-                        <div class="features-entry wow fadeInCdb">
-                            <div class="image-holder">
-<h3>&ensp;</h3>
-                                <img width="800" height="500" src="assets/img/about/about2.jpg" alt="">
-                            </div>
-                        </div>
+                        <!-- breadctumb -->
+                        <ul class="page-breadcrumb">
+                            <li><a href="saler.html">首页</a></li>
+                            <li>销售记录</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="mid-space"></div>
             </div>
         </section>
+        <!-- content-area -->
+		                        <div class="widget">
+                            <h4 class="widget-title">记录查询</h4>
+
+							        <div class="light-section section-block">
+            <div class="container">
+                <div class="section-space"></div>
+							<!-- demo -->
+					<div id="demo" class="box jplist table-layout-2">
+					
+						<!-- ios button: show/hide panel -->
+						<div class="jplist-ios-button">
+							<i class="fa fa-sort"></i>
+							jPList Actions
+						</div>
+						
+						<!-- panel -->
+						<div class="jplist-panel box panel-top">					
+							
+					
+														<!-- filter by description -->
+							<div class="text-filter-box">
+								
+								<i class="fa fa-search  jplist-icon"></i>
+								
+								<!--[if lt IE 10]>
+								<div class="jplist-label">Filter by Description:</div>
+								<![endif]-->
+			
+								<input 
+									data-path=".title" 
+									type="text" 
+									value="" 
+									placeholder="按记录ID查找" 
+									data-control-type="textbox" 
+									data-control-name="title-filter" 
+									data-control-action="filter"
+								/>	
+							</div>
+							
+							<!-- filter by description -->
+							<div class="text-filter-box">
+								
+								<i class="fa fa-search  jplist-icon"></i>
+								
+								<!--[if lt IE 10]>
+								<div class="jplist-label">Filter by Description:</div>
+								<![endif]-->
+								
+								<input 
+									data-path=".desc" 
+									type="text" 
+									value="" 
+									placeholder="按日期查找" 
+									data-control-type="textbox" 
+									data-control-name="desc-filter" 
+									data-control-action="filter"
+								/>	
+							</div>	
+							
+														<!-- filter by description -->
+							<div class="text-filter-box">
+								
+								<i class="fa fa-search  jplist-icon"></i>
+								
+								<!--[if lt IE 10]>
+								<div class="jplist-label">Filter by Description:</div>
+								<![endif]-->
+								
+								<input 
+									data-path=".like" 
+									type="text" 
+									value="" 
+									placeholder="按客户手机查找" 
+									data-control-type="textbox" 
+									data-control-name="like-filter" 
+									data-control-action="filter"
+								/>	
+							</div>	
+							
+							<!-- pagination results -->
+							<div 
+								class="jplist-label" 
+								data-type="当前第{current}页，共{pages}页" 
+								data-control-type="pagination-info" 
+								data-control-name="paging" 
+								data-control-action="paging">
+							</div>
+								
+							<!-- pagination -->
+							<div 
+								class="jplist-pagination" 
+								data-control-type="pagination" 
+								data-control-name="paging" 
+								data-control-action="paging">
+							</div>	
+						</div>
+						
+						<!-- data --> 
+						<div class="box text-shadow" id="table">
+							
+						</div>
+						<!-- end of data -->
+						
+						<div class="box jplist-no-results text-shadow align-center">
+							<p>No results found</p>
+						</div>
+						
+						<!-- ios button: show/hide panel -->
+						<div class="jplist-ios-button">
+							<i class="fa fa-sort"></i>
+							jPList Actions
+						</div>
+						
+						<!-- panel -->
+						<div class="jplist-panel box panel-bottom">						
+							
+							<!-- pagination results -->
+							<div 
+								class="jplist-label" 
+								data-type="{start} - {end} 条，共{all}条记录"
+								data-control-type="pagination-info" 
+								data-control-name="paging" 
+								data-control-action="paging">
+							</div>
+								
+							<!-- pagination -->
+							<div 
+								class="jplist-pagination" 
+								data-control-type="pagination" 
+								data-control-name="paging" 
+								data-control-action="paging"
+								data-control-animate-to-top="true">
+							</div>
+					
+						</div>
+					</div>
+					<!-- end of demo -->
+                  <h3>&ensp;</h3>
+       
+                <div class="section-space"></div>
+            </div>
+        </div>
+                        </div>
 
         <!-- counter-area -->
         <section class="counters white-section section-block">
@@ -374,7 +460,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -426,32 +511,72 @@
   </div> 
 </div>
 <script>
-var query = window.location.search.substring(1);
-var model = -1;
-var vars = query.split("&");
-for (var i=0;i<vars.length;i++) {
-        var pair = vars[i].split("=");
-        if(pair[0] == "model"){
-        	model = pair[1];
-     	   }
-}
-var str ='';
-if(model =='1'){
-	str+='<option value="1" selected="selected">Model 1</option><option value="2">Model 2</option><option value="3">Model 3</option><option value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model == '2'){
-	str+='<option value="1">Model 1</option><option selected="selected" value="2">Model 2</option><option value="3">Model 3</option><option value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model == '3'){
-	str+='<option value="1">Model 1</option><option value="2">Model 2</option><option selected="selected" value="3">Model 3</option><option value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model =='4'){
-	str+='<option value="1">Model 1</option><option value="2">Model 2</option><option value="3">Model 3</option><option selected="selected" value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model =='5'){
-	str+='<option value="1">Model 1</option><option value="2">Model 2</option><option value="3">Model 3</option><option value="4">Model 4</option><option selected="selected" value="5">Model 5</option>';
-}
-$('#model').html(str);
+var input =$('#input').val();
+var pageNum = '1';
+var page
+$.get(
+		'/getBuyInfos?pageNum='+pageNum,
+		function(data){
+			if (data.status==true) {
+				if(data.data!=null){
+			var list = data;
+			var old ='<table class="demo-tbl"><thead><tr><th>记录ID</th><th>客户姓名</th><th>客户性别</th><th>联系方式</th><th>客户地址</th><th>所购车型</th><th>购车日期</th><th>经办员工</th><th>员工电话</th><th>备注</th></tr></thead><tbody>';
+			for(i in data.data.list){
+				var item = data.data.list[i];
+			
+				old += '<tr class="tbl-item"><td class="td-block"><p class="title">'
+				+ item.recordId
+				+'</p></td><td class="td-block"><p>'
+				+ item.customerName
+				+'</p></td><td class="td-block"><p>'
+				+ item.customerGender
+				+'</p></td><td class="td-block"><p class="like">'
+				+ item.customerTel
+				+'</p></td><td class="td-block"><p>'
+				+ item.customerAddress
+				+'</p></td><td class="td-block"><p>'
+				+ item.carType
+				+'</p></td><td class="td-block"><p class="desc">'
+				+ item.recordTime.substring(0,10)+" "+item.recordTime.substring(11,19)
+				+'</p></td><td class="td-block"><p>'
+				+ item.employeeName
+				+'</p></td><td class="td-block"><p>'
+				+ item.employeeTel
+				+'</p></td><td class="td-block"><p>'
+				+ item.recordItem
+				+'</p></td></tr>';
+			}
+			old += '</tbody></table>';
+			$("#table").html(old);
+			$('#demo').jplist({
+				
+				itemsBox: '.demo-tbl tbody' 
+				,itemPath: '.tbl-item' 
+				,panelPath: '.jplist-panel'
+				
+				//save plugin state
+				,storage: 'localstorage' //'', 'cookies', 'localstorage'			
+				,storageName: 'jplist-table-2'
+				
+				,redrawCallback: function(){
+					$('.tbl-item').each(function(index, el){							
+						if(index%2 === 0){
+							$(el).addClass('even');
+						}
+						else{
+							$(el).addClass('odd');
+						}
+					});
+				}
+			});
+			}
+			}
+			if (data.status==false) {
+				alert(data.message);
+			}
+		});
+</script>
+<script>
 $.get('/getEmployee', function(data) {
 	if (data.status==true) {
 		if(data.data==null){
@@ -537,57 +662,6 @@ function ok(id){
 		}
 	});
 }
-function repair(){
-	$.get('/getEmployee', function(data) {
-		if (data.status==true) {
-			if(data.data==null){
-				alert('登录超时，请重新登录');
-				window.location.href="index.html";
-			}
-			var employeeId = data.data.employeeId;
-			var employeeAccount = data.data.employeeAccount;
-			var employeeName = data.data.employeeName;
-			var employeeTel = data.data.employeeTel;
-			var name = $('#customName').val();
-			var tel = $('#tel').val();
-			var address = $('#address').val();
-			var model = $('#model').val();
-			var detail = $('#detail').val();
-			var gender = '男';
-			if($('#radio-2').prop("checked")){
-				gender = '女';
-			}
-			var RepairInfo = {};
-			RepairInfo["customerName"] = name;
-			RepairInfo["customerGender"] = gender;
-			RepairInfo["customerTel"] = tel;
-			RepairInfo["customerAddress"] = address;
-			RepairInfo["employeeName"] = employeeName;
-			RepairInfo["employeeTel"] = employeeTel;
-			RepairInfo["employeeId"] = employeeId;
-			RepairInfo["carType"] = model;
-			RepairInfo["recordItem"] = detail;
-		    $.ajax({
-		        type: "post",
-		        url:"/addBuyInfo" ,
-		        async:false,
-		        dataType: "json",
-		        data:RepairInfo,
-		        success:function(data) {
-				if(data.status==true){
-					alert('购车记录添加成功 ！');
-				}
-				if (data.status==false) {
-					alert(data.message);
-				}
-		        },
-		        error:function(){alert('err back!')}
-		    });
-		}
-		if (data.status==false) {
-			alert(data.message);
-		}
-	});
-
-}
 </script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>AutoShow - 销售服务</title>
+    <title>AutoShow - 管理中心</title>
     <meta name="description" content="AutoShow is a full responsive template. The template has been created especially for automotive dealers, car showroom and auto motor retailers.">
     <meta name="keywords" content="car showroom, auto dealer, automotive, mechanic auto shop, automotive, mechanic workshop">
     
@@ -60,13 +60,12 @@
                 </div>
             </div>
             <div class="container">
-                <a class="main-logo" href="saler.html"><img src="assets/img/logo.svg" alt="autoshow"></a>
+                <a class="main-logo" href="servicer.html"><img src="assets/img/logo.svg" alt="autoshow"></a>
                 <ul class="header-buttons">
                     <li class="dropdown">
                       <a class="user-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user-circle" aria-hidden="true"></i></a><span id="name"></span>
                       <ul class="dropdown-menu">
                         <li><a href="javascript:void(0);" onClick="syalert.syopen('alert4')" id="editUserInfo">修改密码</a></li>
-                        <li><a href="sale_record.html">销售记录</a></li>
                         <li><a href="javascript:void(0);" onclick="logout()">退出登录</a></li>
                       </ul>
                     </li>
@@ -74,164 +73,59 @@
                 </ul>
                 <nav class="nav">
                     <ul id="primary-nav" class="primary-nav is-fixed">
-                        <li class="has-children">
-                            <a>在售车型</a>
-                            <ul class="nav-gallery is-hidden">
-                                <li class="nav-drop-close"></li>
-                                <li class="go-back"><a href="#0">Menu</a></li>
-                                <li class="see-all"><a href="#">All Models</a></li>
-                                <li>
-                                    <a class="nav-item" href="sale.html?model=1">
-                                        <img src="assets/img/models/model1-menu.png" alt="Model1">
-                                        <h3>Model1</h3>
-                                        <p class="price">￥80,000<br /><s</p>
-                                        <p class="tech">
-                                            <span><i class="fa fa-gears" title="Motor power"></i> <small>200 hp</small> </span>
-                                            <span><i class="fa fa-dashboard" title="0 - 100 km / h acceleration"></i> <small>4,6 s</small> </span>
-                                            <span><i class="fa fa-battery-3" title="Fuel consumption"></i> <small>8,3 lt</small> </span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-item" href="sale.html?model=2">
-                                        <img src="assets/img/models/model2-menu.png" alt="Model2">
-                                        <h3>Model2</h3>
-                                        <p class="price">￥160,000<br /></p>
-                                        <p class="tech">
-                                            <span><i class="fa fa-gears" title="Motor power"></i> <small>200 hp</small> </span>
-                                            <span><i class="fa fa-dashboard" title="0 - 100 km / h acceleration"></i> <small>4,6 s</small> </span>
-                                            <span><i class="fa fa-battery-3" title="Fuel consumption"></i> <small>8,3 lt</small> </span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-item" href="sale.html?model=3">
-                                        <img src="assets/img/models/model3-menu.png" alt="Model3">
-                                        <h3>Model3</h3>
-                                        <p class="price">￥200,000<br /></p>
-                                        <p class="tech">
-                                            <span><i class="fa fa-gears" title="Motor power"></i> <small>200 hp</small> </span>
-                                            <span><i class="fa fa-dashboard" title="0 - 100 km / h acceleration"></i> <small>4,6 s</small> </span>
-                                            <span><i class="fa fa-battery-3" title="Fuel consumption"></i> <small>8,3 lt</small> </span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-item" href="sale.html?model=4">
-                                        <img src="assets/img/models/model4-menu.png" alt="Model4">
-                                        <h3>Model4</h3>
-                                        <p class="price">￥300,000<br /></p>
-                                        <p class="tech">
-                                            <span><i class="fa fa-gears" title="Motor power"></i> <small>200 hp</small> </span>
-                                            <span><i class="fa fa-dashboard" title="0 - 100 km / h acceleration"></i> <small>4,6 s</small> </span>
-                                            <span><i class="fa fa-battery-3" title="Fuel consumption"></i> <small>8,3 lt</small> </span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-item" href="sale.html?model=5">
-                                        <img src="assets/img/models/model5-menu.png" alt="Model5">
-                                        <h3>Model5</h3>
-                                        <p class="price">￥500,000<br /></p>
-                                        <p class="tech">
-                                            <span><i class="fa fa-gears" title="Motor power"></i> <small>200 hp</small> </span>
-                                            <span><i class="fa fa-dashboard" title="0 - 100 km / h acceleration"></i> <small>4,6 s</small> </span>
-                                            <span><i class="fa fa-battery-3" title="Fuel consumption"></i> <small>8,3 lt</small> </span>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li><a href="saler_about.html">关于我们</a></li>
+						<li><a href="manager_signup.html">新增员工</a></li>
+                        <li><a href="manager_about.html">关于我们</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <div class="overlay"></div>
+<!-- banner-area -->
+        <section class="banner-section">
+            <div class="section-bg" style="background-image: url('assets/img/parallax.jpg');"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="page-banner-content col">
+                        <h1 class="text-white">关于我们</h1>
 
-		        <!-- banner-area -->
-        <section class="dark-section section-block">
+                        <!-- breadctumb -->
+                        <ul class="page-breadcrumb">
+                            <li><a href="manager.html">首页</a></li>
+                            <li>关于我们</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- about-area -->
+        <section class="white-section section-block">
             <div class="container">
                 <div class="section-space"></div>
                 <div class="row">
-
-                    <div class="col-sm-6 offset-sm-1">
-                        <div class="features-entry wow fadeInCdb">
-                            <div class="image-holder">
-                                <h2 class="section-title">销售订单</h2>
-
-                                <form accept-charset="UTF-8" action="/" class="require-validation" method="post">
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label class="control-label">客户姓名</label>
-                                            <input size="4" type="text" id="customName">
-                                        </div>
-
-                                        <div class="form-group col-sm-6">
-                                            <label class="control-label">联系方式</label>
-                                            <input autocomplete="off" type="text" id="tel">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label class="control-label">客户地址</label>
-                                            <input autocomplete="off" size="20" type="text" id="address">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>所购车型</label>
-                                            <select name="arac" class="selectpicker" id="model">
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <textarea name="mesajınız" id="detail" rows="6" class="margin-top-10" placeholder="备注"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <label>*客户称谓</label>
-                                            <br>
-                                            <div class="radio">
-                                                <input id="radio-1" name="radio" type="radio" checked="">
-                                                <label for="radio-1"><span class="radio-label"></span> 先生 </label>
-                                            </div>
-     
-                                            <div class="radio margin-left-20">
-                                                <input id="radio-2" name="radio" type="radio">
-                                                <label for="radio-2"><span class="radio-label"></span> 小姐 </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row margin-top-30">
-                                        <div class="col-sm-12">
-                                            <button class="button" type="button" onClick="repair()">提交</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="content-area">
+                            <h2><span>AutoShow</span>专注豪华汽车品牌服务，经销网络遍及全国12个城市。</h2>
+                            <p class="subtitle">我们提供多样化的产品和服务，以满足客户的不同需求。我们的经营范围涵盖新车、二手车、汽车零部件的销售、售后服务、金融和保险及相关的汽车衍生服务。</p>
+                            <blockquote>
+                                <p>我们竭诚为客户提供卓越的服务和体验。我们的263名员工坚持不懈地为客户提供个性化解决方案，这正是我们服务文化的体现，也是我们践行对客户承诺的见证。</p>
+                            </blockquote>
                         </div>
                     </div>
-                    <div class="col-sm-3 offset-sm-1">
-                        <div class="features-entry wow fadeInCdb">
-                            <div class="image-holder">
-<h3>&ensp;</h3>
-                                <img width="800" height="500" src="assets/img/about/about2.jpg" alt="">
-                            </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-6 wow fadeInRight animated" data-wow-duration=".5s" data-wow-delay=".3s">
+                        <div class="about-img">
+                            <img src="assets/img/about/about2.jpg" class="img-fluid" alt="">
                         </div>
                     </div>
-                </div>
-                <div class="mid-space"></div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-6 wow fadeInRight animated" data-wow-duration=".5s" data-wow-delay=".6s">
+                        <div class="about-img">
+                            <img src="assets/img/about/about1.jpg" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>         
+                <div class="section-space"></div>
             </div>
         </section>
+
 
         <!-- counter-area -->
         <section class="counters white-section section-block">
@@ -426,32 +320,6 @@
   </div> 
 </div>
 <script>
-var query = window.location.search.substring(1);
-var model = -1;
-var vars = query.split("&");
-for (var i=0;i<vars.length;i++) {
-        var pair = vars[i].split("=");
-        if(pair[0] == "model"){
-        	model = pair[1];
-     	   }
-}
-var str ='';
-if(model =='1'){
-	str+='<option value="1" selected="selected">Model 1</option><option value="2">Model 2</option><option value="3">Model 3</option><option value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model == '2'){
-	str+='<option value="1">Model 1</option><option selected="selected" value="2">Model 2</option><option value="3">Model 3</option><option value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model == '3'){
-	str+='<option value="1">Model 1</option><option value="2">Model 2</option><option selected="selected" value="3">Model 3</option><option value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model =='4'){
-	str+='<option value="1">Model 1</option><option value="2">Model 2</option><option value="3">Model 3</option><option selected="selected" value="4">Model 4</option><option value="5">Model 5</option>';
-}
-if(model =='5'){
-	str+='<option value="1">Model 1</option><option value="2">Model 2</option><option value="3">Model 3</option><option value="4">Model 4</option><option selected="selected" value="5">Model 5</option>';
-}
-$('#model').html(str);
 $.get('/getEmployee', function(data) {
 	if (data.status==true) {
 		if(data.data==null){
@@ -537,57 +405,6 @@ function ok(id){
 		}
 	});
 }
-function repair(){
-	$.get('/getEmployee', function(data) {
-		if (data.status==true) {
-			if(data.data==null){
-				alert('登录超时，请重新登录');
-				window.location.href="index.html";
-			}
-			var employeeId = data.data.employeeId;
-			var employeeAccount = data.data.employeeAccount;
-			var employeeName = data.data.employeeName;
-			var employeeTel = data.data.employeeTel;
-			var name = $('#customName').val();
-			var tel = $('#tel').val();
-			var address = $('#address').val();
-			var model = $('#model').val();
-			var detail = $('#detail').val();
-			var gender = '男';
-			if($('#radio-2').prop("checked")){
-				gender = '女';
-			}
-			var RepairInfo = {};
-			RepairInfo["customerName"] = name;
-			RepairInfo["customerGender"] = gender;
-			RepairInfo["customerTel"] = tel;
-			RepairInfo["customerAddress"] = address;
-			RepairInfo["employeeName"] = employeeName;
-			RepairInfo["employeeTel"] = employeeTel;
-			RepairInfo["employeeId"] = employeeId;
-			RepairInfo["carType"] = model;
-			RepairInfo["recordItem"] = detail;
-		    $.ajax({
-		        type: "post",
-		        url:"/addBuyInfo" ,
-		        async:false,
-		        dataType: "json",
-		        data:RepairInfo,
-		        success:function(data) {
-				if(data.status==true){
-					alert('购车记录添加成功 ！');
-				}
-				if (data.status==false) {
-					alert(data.message);
-				}
-		        },
-		        error:function(){alert('err back!')}
-		    });
-		}
-		if (data.status==false) {
-			alert(data.message);
-		}
-	});
-
-}
 </script>
+</body>
+</html>
