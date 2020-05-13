@@ -92,4 +92,9 @@ public class PageController {
 		return "repair_record";
 	}
 
+	@RequestMapping("/manager_signup.html")
+	public String gotoManager_signup() {
+		return "manager_signup";
+	}
+
 }
