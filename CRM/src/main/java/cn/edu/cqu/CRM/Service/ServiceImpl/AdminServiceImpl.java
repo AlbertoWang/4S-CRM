@@ -38,26 +38,34 @@ public class AdminServiceImpl implements AdminService {
 
 	private Employee employeeViewToTable(EmployeeInfo employeeInfo) {
 		Employee employee = new Employee();
-		employee.setEmployeeName(employeeInfo.getEmployeeName());
-		employee.setEmployeeTel(employeeInfo.getEmployeeTel());
-		UserTypeExample userTypeExample = new UserTypeExample();
-		userTypeExample.or().andUserTypeNameEqualTo(employeeInfo.getUserTypeName());
-		EmployeePermissionExample employeePermissionExample = new EmployeePermissionExample();
-		employeePermissionExample.or().andPermissionNameEqualTo(employeeInfo.getPermissionName());
+		if (employeeInfo.getEmployeeName() != null)
+			employee.setEmployeeName(employeeInfo.getEmployeeName());
+		if (employeeInfo.getEmployeeTel() != null)
+			employee.setEmployeeTel(employeeInfo.getEmployeeTel());
+
 		try {
-			List<UserType> userTypes = userTypeMapper.selectByExample(userTypeExample);
-			if (userTypes.size() == 0) {
-				System.err.println("数据库 UserType 表出错");
-				return null;
+			if (employeeInfo.getUserTypeName() != null) {
+				UserTypeExample userTypeExample = new UserTypeExample();
+				userTypeExample.or().andUserTypeNameEqualTo(employeeInfo.getUserTypeName());
+				List<UserType> userTypes = userTypeMapper.selectByExample(userTypeExample);
+				if (userTypes.size() == 0) {
+					System.err.println("数据库 UserType 表出错");
+					return null;
+				}
+				employee.setUserTypeId(userTypes.get(0).getUserTypeId());
 			}
-			List<EmployeePermission> employeePermissions = employeePermissionMapper
-					.selectByExample(employeePermissionExample);
-			if (employeePermissions.size() == 0) {
-				System.err.println("数据库 EmployeePermission 表出错");
-				return null;
+
+			if (employeeInfo.getPermissionName() != null) {
+				EmployeePermissionExample employeePermissionExample = new EmployeePermissionExample();
+				employeePermissionExample.or().andPermissionNameEqualTo(employeeInfo.getPermissionName());
+				List<EmployeePermission> employeePermissions = employeePermissionMapper
+						.selectByExample(employeePermissionExample);
+				if (employeePermissions.size() == 0) {
+					System.err.println("数据库 EmployeePermission 表出错");
+					return null;
+				}
+				employee.setPermissionId(employeePermissions.get(0).getPermissionId());
 			}
-			employee.setUserTypeId(userTypes.get(0).getUserTypeId());
-			employee.setPermissionId(employeePermissions.get(0).getPermissionId());
 			return employee;
 		} catch (Exception e) {
 			System.err.println(e);
