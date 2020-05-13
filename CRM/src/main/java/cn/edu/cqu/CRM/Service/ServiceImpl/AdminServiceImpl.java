@@ -13,6 +13,7 @@ import cn.edu.cqu.CRM.Dao.EmployeeMapper;
 import cn.edu.cqu.CRM.Dao.EmployeePermissionMapper;
 import cn.edu.cqu.CRM.Dao.UserTypeMapper;
 import cn.edu.cqu.CRM.Pojo.Employee;
+import cn.edu.cqu.CRM.Pojo.EmployeeExample;
 import cn.edu.cqu.CRM.Pojo.EmployeeInfo;
 import cn.edu.cqu.CRM.Pojo.EmployeeInfoExample;
 import cn.edu.cqu.CRM.Pojo.EmployeePermission;
@@ -42,7 +43,8 @@ public class AdminServiceImpl implements AdminService {
 			employee.setEmployeeName(employeeInfo.getEmployeeName());
 		if (employeeInfo.getEmployeeTel() != null)
 			employee.setEmployeeTel(employeeInfo.getEmployeeTel());
-
+		if (employeeInfo.getEmployeeId() != null)
+			employee.setEmployeeId(employeeInfo.getEmployeeId());
 		try {
 			if (employeeInfo.getUserTypeName() != null) {
 				UserTypeExample userTypeExample = new UserTypeExample();
@@ -134,8 +136,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public MyJson updateEmployeeInfo(EmployeeInfo employeeInfo) {
 		Employee employee = employeeViewToTable(employeeInfo);
+		EmployeeExample employeeExample = new EmployeeExample();
+		employeeExample.or().andEmployeeIdEqualTo(employee.getEmployeeId());
 		try {
-			employeeMapper.updateByPrimaryKeySelective(employee);
+			employeeMapper.updateByExampleSelective(employee, employeeExample);
 			return new MyJson("更新成功");
 		} catch (Exception e) {
 			System.err.println(e);
