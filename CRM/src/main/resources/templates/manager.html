@@ -438,6 +438,37 @@
     <button onClick="manageInfo()">确定</button>
   </div> 
 </div>
+<!-- 自定义弹窗 3-->
+<div class="sy-alert sy-alert-model animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="confirm" sy-mask="true" id="alert6">
+  <div class="sy-title">修改员工权限</div>
+  <div class="sy-content">
+    <div class="form">
+    &ensp;员工ID：<span id ="checkId"></span><br>
+                                                <label>职务</label>
+                                            <select name="arac" style="height:45px;" id="select">
+                                            
+  											  <optgroup label="销售部">
+                                                <option value="11">销售经理</option>
+                                                <option value="12">展厅主管</option>
+                                                <option value="13">销售服务顾问</option>
+                                                <option selected="selected" value="14">客户经理</option>
+											</optgroup>
+											  											  <optgroup label="售后部">
+                                                <option value="21">售后经理</option>
+                                                <option value="22">事故接待</option>
+                                                <option value="31">车间经理</option>
+                                                <option value="32">车间主管</option>
+                                                <option value="33">维修工</option>
+
+                                            </select>
+
+    </div>
+  </div> 
+  <div class="sy-btn">
+    <button onClick="syalert.syhide('alert6')">取消</button>
+    <button onClick="manageJob()">确定</button>
+  </div> 
+</div>
 <script>
 var input =$('#input').val();
 var pageNum = '1';
@@ -461,7 +492,7 @@ $.get(
 				+ item.userTypeName
 				+'</p></td><td class="td-block"><p>'
 				+ item.permissionName
-				+'</p></td><td class="td-block"><p>&ensp;<button  class="button medium" type="button" onclick="copyText(\''+item.employeeId+'\')" >管理信息</button>&ensp;&ensp;<button  class="button medium dark" type="button" onClick="thisModal(this)">修改权限</button>'
+				+'</p></td><td class="td-block"><p>&ensp;<button  class="button medium" type="button" onclick="copyText(\''+item.employeeId+'\')" >管理信息</button>&ensp;&ensp;<button  class="button medium dark" type="button" onclick="copyId(\''+item.employeeId+'\')" >修改权限</button>'
 				+'</p></td></tr>';
 			}
 			old += '</tbody></table>';
@@ -525,7 +556,10 @@ function copyText(id){
 	$("#checkID").html(id);
 	syalert.syopen('alert5');
 };
-
+function copyId(id){
+	$("#checkId").html(id);
+	syalert.syopen('alert6');
+};
 function ok(id){
 	if(id == 'alert4'){
 	$.get('/getEmployee', function(data) {
@@ -605,6 +639,41 @@ function manageInfo(){
 		if(data.status==true){
 			syalert.syhide('alert5');	
 			alert('信息修改成功！');
+			window.location.reload();
+		}
+		if (data.status==false) {
+			alert(data.message);
+		}
+        },
+        error:function(){alert('err back!')}
+    });
+}
+function manageJob(){
+	var employeeId=document.getElementById('checkId').innerText;
+	var permissionId = $('#select').val();
+	var permissionName = $('#select').find("option:selected").text();
+	var userTypeId='2';
+	var userTypeName = "售后";
+	if(permissionId>10&&permissionId<15){
+		userTypeId='3';
+		userTypeName = "销售";
+	}
+    var EmployeeInfo ={};
+	EmployeeInfo["permissionId"] = permissionId;
+	EmployeeInfo["permissionName"] = permissionName;
+	EmployeeInfo["employeeId"] = employeeId;
+	EmployeeInfo["userTypeId"] = userTypeId;
+	EmployeeInfo["userTypeName"] = userTypeName;
+    $.ajax({
+        type: "post",
+        url:"/updateEmployeeInfo" ,
+        async:false,
+        dataType: "json",
+        data:EmployeeInfo,
+        success:function(data) {
+		if(data.status==true){
+			syalert.syhide('alert5');	
+			alert('权限修改成功！');
 			window.location.reload();
 		}
 		if (data.status==false) {
