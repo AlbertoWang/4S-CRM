@@ -28,7 +28,7 @@ public class UserController {
 	@GetMapping(value = "getCustomers")
 	@ResponseBody
 	public MyJson getCustomers(@RequestParam(required = true, value = "pageNum", defaultValue = "1") int pageNum,
-			@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize, Long customerTel) {
+			@RequestParam(required = false, value = "pageSize", defaultValue = "9999") int pageSize, Long customerTel) {
 		return userSerivce.getCustomers(pageNum, pageSize, customerTel);
 	}
 
@@ -39,7 +39,7 @@ public class UserController {
 	@GetMapping(value = "getBuyInfos")
 	@ResponseBody
 	public MyJson getBuyInfos(@RequestParam(required = true, value = "pageNum", defaultValue = "1") int pageNum,
-			@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize, Long customerTel,
+			@RequestParam(required = false, value = "pageSize", defaultValue = "9999") int pageSize, Long customerTel,
 			String employeeName, Date recordDay) {
 		return userSerivce.getBuyInfos(pageNum, pageSize, customerTel, employeeName, recordDay);
 	}
@@ -58,7 +58,7 @@ public class UserController {
 	@GetMapping(value = "getMaintainInfos")
 	@ResponseBody
 	public MyJson getMaintainInfos(@RequestParam(required = true, value = "pageNum", defaultValue = "1") int pageNum,
-			@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize, Long customerTel,
+			@RequestParam(required = false, value = "pageSize", defaultValue = "9999") int pageSize, Long customerTel,
 			String employeeName, Date recordDay) {
 		return userSerivce.getMaintainInfos(pageNum, pageSize, customerTel, employeeName, recordDay);
 	}
@@ -77,7 +77,7 @@ public class UserController {
 	@GetMapping(value = "getRepairInfos")
 	@ResponseBody
 	public MyJson getRepairInfos(@RequestParam(required = true, value = "pageNum", defaultValue = "1") int pageNum,
-			@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize, Long customerTel,
+			@RequestParam(required = false, value = "pageSize", defaultValue = "9999") int pageSize, Long customerTel,
 			String employeeName, Date recordDay) {
 		return userSerivce.getRepairInfos(pageNum, pageSize, customerTel, employeeName, recordDay);
 	}

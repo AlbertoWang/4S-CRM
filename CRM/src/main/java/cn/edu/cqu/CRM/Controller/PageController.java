@@ -87,4 +87,9 @@ public class PageController {
 		return "service_record";
 	}
 
+	@RequestMapping("/repair_record.html")
+	public String gotoRepair_record() {
+		return "repair_record";
+	}
+
 }
