@@ -479,7 +479,7 @@ $.get(
 			if (data.status==true) {
 				if(data.data!=null){
 			var list = data;
-			var old ='<table class="demo-tbl"><thead><tr><th>员工ID</th><th>员工姓名</th><th>联系方式</th><th>部门</th><th>职务</th><th width="24%">操作</th></tr></thead><tbody>';
+			var old ='<table class="demo-tbl"><thead><tr><th>员工ID</th><th>员工姓名</th><th>联系方式</th><th>部门</th><th>职务</th><th width="30%">操作</th></tr></thead><tbody>';
 			for(i in data.data.list){
 				var item = data.data.list[i];
 				old += '<tr class="tbl-item"><td class="td-block"><p>'
